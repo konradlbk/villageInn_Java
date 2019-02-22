@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments :: links">
+
+    <script src="http://momentjs.com/downloads/moment.js"></script>
+
+</head>
+<body>
+<div th:replace="fragments :: header"></div>
+
+<div class="container marketing">
+    <div class="row">
+
+        <form th:action="@{/reservation/add}" th:object="${reservation}" method="post" style="margin: auto; padding-top: 140px">
+            <h1 class="mb-0">Book a Room</h1><br><br>
+
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="fname">First Name</label>
+                    <input class="form-control" id="fname" placeholder="First Name" required="required" data-validation-required-message="Please enter your first name."
+                           th:field="*{customerFirstName}">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="lname">Last Name</label>
+                    <input class="form-control" id="lname" placeholder="Last Name" required="required" data-validation-required-message="Please enter your last name."
+                           th:field="*{customerLastName}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="mail">E-Mail</label>
+                <input class="form-control" id="mail" placeholder="E-Mail" required="required" data-validation-required-message="Please enter your e-mail address."
+                       th:field="*{mail}">  </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="room">Room</label>
+                    <select class="form-control" id="room" th:field="*{roomId}" onchange="myFunction(); result()">
+                        <option th:each="allrooms : ${rooms}" th:text="${allrooms.name}" th:value="${allrooms.id}"
+                                placeholder="Choose a room..." required="required" data-validation-required-message="Please choose a room."></option>
+
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="phone">Phone Number</label>
+                    <input class="form-control" id="phone" placeholder="Phone Number" data-validation-required-message="Please enter phone number." th:field="*{phone}">
+                </div>
+            </div>
+
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="dateFrom">Check-In Date</label>
+                    <input class="form-control"  type="date" id="dateFrom" required="required" data-validation-required-message="Please enter check-in date."
+                           th:field="*{reservationStartDate}">
+
+
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="dateTo">Check-Out Date</label>
+                    <input class="form-control" type="date" id="dateTo" required="required" data-validation-required-message="Please enter check-out date."
+                           th:field="*{reservationEndDate}" onchange="result()">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-10">
+                <label for="price">Price per day</label>
+                <input class="form-control" id="price" disabled>
+
+                </div>
+                <div class="form-group col-md-2">
+                    <p></p><br>
+                    <p>PLN</p>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-10">
+                    <label for="price">Total price</label>
+                    <input class="form-control" id="total" disabled>
+
+                </div>
+                <div class="form-group col-md-2">
+                    <p></p><br>
+                    <p>PLN</p>
+                </div>
+            </div>
+
+
+
+
+
+
+            <br>
+
+            <!-- SCRIPT USED TO UPDATE PRICE PER DAY BY SELECTING ANOTHER ROOM-->
+            <script th:inline="javascript">
+                /*<![CDATA[*/
+
+                function myFunction(){
+
+                    var rooms = /*[[${rooms}]]*/ null;
+                    var selectedIndex = $("#room option:selected").index();
+                    var allrooms = rooms[selectedIndex];
+
+                    document.getElementById('price').value = allrooms.pricePerDay;
+
+                    // $("#price").text("Cena: " + allrooms.pricePerDay);
+
+                }
+                $(function() { myFunction(); });
+                /*]]>*/
+            </script>
+
+
+                    <!--document.getElementById('price').value = val;-->
+                    <!--// var x = document.getElementById("price");-->
+                    <!--// x.value = x.value-->
+
+            <script>
+                function result() //e refers to event.
+                {
+                    var dateFirst = new Date(document.getElementById('dateFrom').value);
+                    var dateSecond = new Date(document.getElementById('dateTo').value);
+
+                    var timeDiff = Math.abs(dateSecond.getTime()-dateFirst.getTime());
+
+                    var diffDays = Math.ceil(timeDiff/(1000*3600*24));
+                    // e.preventDefault();
+                    // var a = document.getElementById('dateFrom').value;
+                    // var b = document.getElementById('dateTo').value;
+                    var c = document.getElementById('price').value;
+                     // var d = 8;
+                    // var e=8;
+
+                    // var checkin = moment(a, 'MM-DD-YYYY');
+                    // var checkout = moment(b, 'MM-DD-YYYY');
+                    //
+                    // var days= checkout.diff(checkin, 'days');
+
+                    document.getElementById('total').value = diffDays*c;
+
+                    // alert("The money you have to pay is: "+days*price);
+
+
+                }
+
+
+
+
+            </script>
+
+            <div class="form-row">
+                <div class="form-control-feedback" th:if="${error_message} !=null">
+                        <span class="text-danger align-middle">
+                            <i class="fas fa-times" style="color: #dc3545" th:text="${error_message}"></i>
+                        </span>
+
+                </div>
+            </div><br>
+
+            <button type="submit" class="btn btn-primary">Book</button>
+
+
+
+
+
+
+        </form>
+    </div>
+
+
+
+</div>
+
+<div th:replace="fragments :: footer"></div>
+
+</body>
+</html>

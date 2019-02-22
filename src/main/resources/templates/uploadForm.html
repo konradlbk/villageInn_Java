@@ -1,0 +1,93 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+<!--<div th:if="${message}">-->
+    <!--<h2 th:text="${message}"/>-->
+<!--</div>-->
+
+<!--<div>-->
+    <!--<form method="POST" enctype="multipart/form-data" action="/">-->
+        <!--&lt;!&ndash;<table>&ndash;&gt;-->
+            <!--&lt;!&ndash;<tr><td>File to upload:</td><td><input type="file" name="file" /></td></tr>&ndash;&gt;-->
+            <!--&lt;!&ndash;<tr><td></td><td><input type="submit" value="Upload" /></td></tr>&ndash;&gt;-->
+        <!--&lt;!&ndash;</table>&ndash;&gt;-->
+    <!--</form>-->
+<!--</div>-->
+
+<!--<div>-->
+    <!--<ul>-->
+        <!--<li th:each="file : ${files}">-->
+            <!--<a th:href="${file}" th:text="${file}" />-->
+        <!--</li>-->
+    <!--</ul>-->
+<!--</div>-->
+
+<!--<div class="container">-->
+    <!--<div class="row">-->
+<div th:if="${message}">
+    <h2 th:text="${message}"/>
+</div>
+        <form class="form-horizontal" enctype="multipart/form-data" th:action="@{/upload}" th:object="${room}" method="post">
+            <fieldset>
+                <legend style="padding-left: 10px">Legend</legend>
+                <div class="form-group">
+                    <label for="roomTypes" class="col-sm-4 control-label">Room Type:</label>
+                    <div class="col-sm-8" style="alignment: center">
+                        <select class="form-control" id="roomTypes" th:field="*{roomType}">
+                            <option th:each="itertype : ${roomTypes}" th:text="${itertype}" th:value="${itertype}"></option>
+
+                        </select>                    </div>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="bedTypes" class="col-sm-4 control-label">Bed Type</label>
+                    <div class="col-sm-8">
+                        <select class="form-control" id="bedTypes" th:field="*{bedType}">
+                            <option th:each="iterbeds : ${bedTypes}" th:text="${iterbeds}" th:value="${iterbeds}"></option>
+
+                        </select>
+
+                    </div>
+                </div>
+<br>
+
+                <div class="form-group">
+                    <label for="roomName" class="col-sm-4 control-label">Room NAME</label>
+                    <div class="col-sm-8">
+                        <textarea class="form-control" rows="3" id="roomName" th:field="*{name}"></textarea>
+                        <span class="help-block">Write details about room's equipment etc.</span>
+                    </div>
+                </div>
+<br>
+
+                <div class="form-group">
+                    <label for="pricePerDay" class="col-sm-4 control-label">Price per day</label>
+                    <div class="col-sm-8">
+                        <textarea class="form-control" rows="3" id="pricePerDay" th:field="*{pricePerDay}"></textarea>
+                        <span class="help-block">Write details about room's equipment etc.</span>
+                    </div>
+                </div>
+                <br>
+
+
+
+                <table>
+                    <tr><td>File to upload:</td><td><input type="file" name="file" /></td></tr>
+                    <tr><td></td><td><input type="submit" value="Upload" /></td></tr>
+                </table>
+<br>
+
+                <div class="form-group">
+                    <div class="col-sm-8 col-sm-offset-4">
+                        <button type="reset" class="btn btn-default">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+
+</body>
+</html>

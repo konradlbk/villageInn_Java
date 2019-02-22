@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments :: links">
+
+
+</head>
+<body>
+
+<div th:replace="fragments :: header"></div>
+
+<!--<div class="container">-->
+    <!--<h3>Check availability</h3>-->
+    <!--<br>-->
+<!--<form action="/addRoom/list/check/" method="get">-->
+
+    <!--<div class='col-xs-4' style="margin-left: 70px">-->
+
+        <!--<div class="form-group">-->
+            <!--<label class="control-label" for="focusedInput">Check-In Date</label>-->
+            <!--<input class="form-control" id="focusedInput"  type="date" name="dateCheck">-->
+        <!--</div>-->
+
+
+      <!---->
+
+    <!--</div>-->
+
+
+    <!--<div class='col-xs-2'>-->
+        <!--<div class="form-group">-->
+            <!--<button type="submit" class="btn btn-success" id="button" style="margin-top: 25px">Check</button>-->
+
+        <!--</div>-->
+    <!--</div>-->
+
+<!--</form>-->
+<!--</div>-->
+<!--<script type="text/javascript">-->
+    <!--$(function () {-->
+        <!--$('#datetimepicker6').datetimepicker();-->
+        <!--$('#datetimepicker7').datetimepicker({-->
+            <!--useCurrent: false //Important! See issue #1075-->
+        <!--});-->
+        <!--$("#datetimepicker6").on("dp.change", function (e) {-->
+            <!--$('#datetimepicker7').data("DateTimePicker").minDate(e.date);-->
+        <!--});-->
+        <!--$("#datetimepicker7").on("dp.change", function (e) {-->
+            <!--$('#datetimepicker6').data("DateTimePicker").maxDate(e.date);-->
+        <!--});-->
+    <!--});-->
+<!--</script>-->
+<!--<br><br>-->
+<div class="container">
+    <!--Treść strony-->
+    <h3 style="text-align: center">Our Rooms:</h3>
+    <br><br>
+    <!--<div class="row col-md-offset-1 col-md-10">-->
+        <!--<div class="row table-header"> &lt;!&ndash;Nagłówek&ndash;&gt;-->
+            <!--<div class="col-md-1">Id</div>-->
+            <!--<div class="col-md-2">Room Type</div>-->
+            <!--<div class="col-md-2">Bed Type</div>-->
+            <!--<div class="col-md-3">Rooms Limit</div>-->
+            <!--<div class="col-md-4">Desc</div>-->
+        <!--</div>  &lt;!&ndash;Nagłowek end&ndash;&gt;-->
+        <!--<div class="row table-row" th:each="rooms : ${foundRooms}">-->
+            <!--<div class="col-md-1"><p th:text="${rooms.getId()}"></p></div>-->
+            <!--<div class="col-md-2"><p th:text="${rooms.getRoomType()}"></p></div>-->
+            <!--<div class="col-md-2"><p th:text="${rooms.getBedType()}"></p></div>-->
+            <!--<div class="col-md-3"><p th:text="${rooms.getRoomsLimit()}"></p></div>-->
+            <!--<div class="col-md-3"><p th:text="${rooms.getDescription()}"></p></div>-->
+            <!--&lt;!&ndash;<div class="col-md-4 row">&ndash;&gt;-->
+                <!--&lt;!&ndash;<div class="col-md-6"> &lt;!&ndash;Usuwanie&ndash;&gt;&ndash;&gt;-->
+                    <!--&lt;!&ndash;<a th:href="@{'/reservation/remove/' + ${reservation.getId()}}">Remove</a>&ndash;&gt;-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                <!--&lt;!&ndash;<div class="col-md-6"> &lt;!&ndash;Szczegóły&ndash;&gt;&ndash;&gt;-->
+                    <!--&lt;!&ndash;<a th:href="@{'/reservation/details/' + ${reservation.getId()}}">Details</a>&ndash;&gt;-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--</div>-->
+    <!--</div>-->
+<br>
+    <table class="table table-striped table-hover ">
+        <thead>
+        <tr>
+            <th></th>
+            <th>Room Type</th>
+            <th>BedType</th>
+            <!--<th>Rooms Limit</th>-->
+            <th>Description</th>
+            <th> </th>
+        </tr>
+        </thead>
+        <tbody th:each="rooms : ${foundRooms}">
+        <tr class="warning">
+            <td style="padding-top: 8px"><img th:src="'http://localhost:8080/files/'+ ${rooms.picturePath}" style="height: 200px; border-radius: 4px"> </td>
+            <td th:text="${rooms.roomType}" style="padding-top: 94px"></td>
+            <td th:text="${rooms.bedType}" style="padding-top: 94px"></td>
+            <!--<td th:text="${rooms.roomsLimit}" style="padding-top: 94px"></td>-->
+            <!--<td th:text="${rooms.description}" style="padding-top: 94px"></td>-->
+            <td style="padding-top: 94px"><a class="btn btn-danger btn-xs" th:href="@{'/wishList/addToWishList/'}" >Book</a></td>
+        </tr>
+
+        <!--</tr>-->
+        </tbody>
+    </table>
+
+
+
+    <!--<div class="container">-->
+
+        <!--<h1>Testing Date Inputs</h1>-->
+
+        <!--&lt;!&ndash;<div>&ndash;&gt;-->
+            <!--&lt;!&ndash;<label for="input-date">Input date</label>&ndash;&gt;-->
+            <!--&lt;!&ndash;<input id="input-date" type="date" value="2014-10-31">&ndash;&gt;-->
+            <!--&lt;!&ndash;<span class="result"></span>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--<div>-->
+            <!--<label for="input-time">Input time</label>-->
+            <!--<input id="input-time" type="time" value="00:00:01">-->
+            <!--<span class="result"></span>-->
+        <!--</div>-->
+
+        <!--<div>-->
+            <!--<label for="input-datetime">Input datetime</label>-->
+            <!--<input id="input-datetime" type="datetime" value="2014-10-31T00:00:01Z">-->
+            <!--<span class="result"></span>-->
+        <!--</div>-->
+
+        <!--<div>-->
+            <!--<label for="input-datetime-local">Input datetime-local</label>-->
+            <!--<input id="input-datetime-local" type="datetime-local" value="2014-10-31T00:00:01">-->
+            <!--<span class="result"></span>-->
+        <!--</div>-->
+
+        <!--<div>-->
+            <!--<label for="input-month">Input month</label>-->
+            <!--<input id="input-month" type="month" value="2014-10">-->
+            <!--<span class="result"></span>-->
+        <!--</div>-->
+
+        <!--<div>-->
+            <!--<label for="input-week">Input week</label>-->
+            <!--<input id="input-week" type="week" value="2014-W45">-->
+            <!--<span class="result"></span>-->
+        <!--</div>-->
+
+        <!--<p class="p">Demo by Massimo Cassandro. <a href="http://www.sitepoint.com/finding-date-picker-input-solution-bootstrap" target="_blank">See article</a>.</p>-->
+
+    <!--</div>-->
+
+
+    <!--Treść strony-->
+</div>
+
+<div th:replace="fragments :: footer"></div>
+
+</body>
+</html>

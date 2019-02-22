@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:fragment="links">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Village Inn</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- Plugin CSS -->
+    <link href="/vendor/magnific-popup/magnific-popup.css" rel="stylesheet" type="text/css">
+
+    <!-- Custom styles for this template -->
+    <link href="/css/freelancer.min.css" rel="stylesheet">
+
+    <!-- Nicer datepicker -->
+
+
+    <script type='text/javascript' src='//code.jquery.com/jquery-1.8.3.js'></script>
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker3.min.css">
+    <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.min.js"></script>
+    <script type='text/javascript'>
+        $(function(){
+            $('.input-group.date').datepicker({
+                calendarWeeks: true,
+                todayHighlight: true,
+                autoclose: true
+            });
+        });
+
+    </script>
+</head>
+<body>
+
+<div th:fragment="header">
+    <!--<p sec:authorize="HasRole('ROLE_ADMIN')">-->
+    <!--Jestes adminem!-->
+    <!--</p>-->
+
+
+    <nav class="navbar navbar-expand-lg bg-secondary fixed-top" id="mainNav">
+        <div class="container-fluid">
+            <a class="navbar-brand js-scroll-trigger" href="http://localhost:8080/index" style="font-style: italic"><img src="/graphics/l1.png" width="50px" height="50px"></img>villageInn</a>
+            <button class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                Menu
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item mx-0 mx-lg-1">
+                        <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="http://localhost:8080/index#portfolio"><i class="fas fa-list-ul"></i>&nbsp;Our Rooms</a>
+                    </li>
+                    <li class="nav-item mx-0 mx-lg-1">
+                        <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="http://localhost:8080/reservation/add"><i class="fas fa-book-open"></i>&nbsp;Book</a>
+                    </li>
+                    <li class="nav-item mx-0 mx-lg-1">
+                        <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about"><i class="fas fa-info"></i>&nbsp;About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+</div>
+
+<div th:fragment="footer">
+    <!-- Bootstrap core JavaScript -->
+    <!--<script src="/vendor/jquery/jquery.min.js"></script>-->
+
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="/js/jqBootstrapValidation.js"></script>
+    <script src="/js/contact_me.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="/js/freelancer.min.js"></script>
+
+</div>
+</body>
+</html>
