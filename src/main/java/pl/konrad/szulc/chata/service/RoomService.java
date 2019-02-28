@@ -9,9 +9,7 @@ import pl.konrad.szulc.chata.repository.ReservationRepository;
 import pl.konrad.szulc.chata.repository.RoomRepository;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class RoomService {
@@ -43,11 +41,25 @@ public class RoomService {
             if ((startDate.isEqual(reservations.get(i).getReservationStartDate() )|| startDate.isAfter(reservations.get(i).getReservationStartDate())) &&
                     (endDate.isBefore(reservations.get(i).getReservationEndDate()) || endDate.isEqual(reservations.get(i).getReservationEndDate()))){
                 System.out.println("Nie ma pokoju");
-            }else {
+            }else{
+
             rooms.add(reservations.get(i).getRoom());
+            
+
+
+                Set<Room> s = new HashSet<Room>();
+                s.addAll(rooms);
+
+                rooms = new ArrayList<Room>();
+
+                rooms.addAll(s);
 
 
             }
+
+//            if (!rooms.isEmpty() && rooms.get(i)==rooms.get(i+1)){
+//                rooms.remove(rooms.get(i));
+//            }
         }
         return rooms;
     }

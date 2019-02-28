@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.time.LocalDate;
+import java.util.Objects;
 
 @Entity
 @Data
@@ -34,7 +35,26 @@ public class Room {
 
     private short pricePerDay;
 
-//    private Integer roomsLimit;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Room)) return false;
+        Room room = (Room) o;
+        return pricePerDay == room.pricePerDay &&
+                Objects.equals(id, room.id) &&
+                Objects.equals(name, room.name) &&
+                roomType == room.roomType &&
+                Objects.equals(picturePath, room.picturePath) &&
+                bedType == room.bedType;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, roomType, picturePath, bedType, pricePerDay);
+    }
+
+
+    //    private Integer roomsLimit;
 
 //    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
 //    private LocalDate availableDate;
